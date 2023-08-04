@@ -250,7 +250,8 @@ def parse_config():
             os.makedirs(args.im_path, exist_ok=True)
 
     # add device
-    device_name = f'cuda:{args.device}' if torch.cuda.is_available() else 'cpu'
+    #device_name = f'cuda:{args.device}' if torch.cuda.is_available() else 'cpu'
+    device_name = f'cuda' if torch.cuda.is_available() else 'cpu'
     device = torch.device(device_name)
     logging.info("Using device: {}".format(device))
     new_config.device = device
@@ -265,6 +266,9 @@ def parse_config():
         if new_config.data.dataset != "uci":
             args.seed += 1  # apply a different seed for each run of toy example
     set_random_seed(args.seed)
+
+    print('In main.py parse_config')
+    print(new_config.data.dataset, '|', new_config.data)
 
     torch.backends.cudnn.benchmark = True
 

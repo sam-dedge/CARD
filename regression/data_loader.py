@@ -144,6 +144,7 @@ class UCI_Dataset(object):
     def __init__(self, config, split, validation=False):
         # global variables for reading data files
         _DATA_DIRECTORY_PATH = os.path.join(config.data.data_root, config.data.dir, "data")
+        _DATA_DIRECTORY_PATH = r'{}'.format(os.path.normpath(_DATA_DIRECTORY_PATH[1:]))
         _DATA_FILE = os.path.join(_DATA_DIRECTORY_PATH, "data.txt")
         _INDEX_FEATURES_FILE = os.path.join(_DATA_DIRECTORY_PATH, "index_features.txt")
         _INDEX_TARGET_FILE = os.path.join(_DATA_DIRECTORY_PATH, "index_target.txt")
@@ -151,6 +152,9 @@ class UCI_Dataset(object):
 
         # set random seed 1 -- same setup as MC Dropout
         utils.set_random_seed(1)
+
+        print('In data_loader.py UCI_Dataset class')
+        print(_DATA_FILE, '|', _DATA_DIRECTORY_PATH)
 
         # load the data
         data = np.loadtxt(_DATA_FILE)
