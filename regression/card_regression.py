@@ -103,6 +103,7 @@ class Diffusion(object):
                 use_batchnorm=config.diffusion.nonlinear_guidance.use_batchnorm,
                 negative_slope=config.diffusion.nonlinear_guidance.negative_slope,
                 dropout_rate=config.diffusion.nonlinear_guidance.dropout_rate).to(self.device)
+            #self.cond_pred_model = ConditionalGuidedModel(config)
             self.aux_cost_function = nn.MSELoss()
         else:
             pass
