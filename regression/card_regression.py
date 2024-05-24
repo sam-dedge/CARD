@@ -1074,6 +1074,12 @@ class Diffusion(object):
                                         dataset_object=dataset_object,
                                         y_batch=y_batch, gen_y=gen_y)
 
+                print('Here', gen_y.shape)
+                print(len(true_y_by_batch_list), len(true_y_by_batch_list[0]), len(gen_y_by_batch_list))
+                #print(f'True y by Batch last = {true_y_by_batch_list[0][:5]}')
+                #print(f'GenY0 = {gen_y[:5,0,:]}')
+                #print(f'GenY-1 = {gen_y[:5,-1,:]}')
+
                 # make plot at particular mini-batches
                 if step % config.testing.plot_freq == 0:  # plot for every plot_freq-th mini-batch
                     fig, axs = plt.subplots(1, self.num_figs + 1,
@@ -1184,10 +1190,10 @@ class Diffusion(object):
             y_nll_all_steps_list.append(y_nll)
             logging.info("\nNegative Log-Likelihood on test set is {:.8f}.".format(y_nll))
 
-        logging.info(f"y RMSE at all steps: {y_rmse_all_steps_list}.\n")
-        logging.info(f"y QICE at all steps: {y_qice_all_steps_list}.\n")
-        logging.info(f"y PICP at all steps: {y_picp_all_steps_list}.\n\n")
-        logging.info(f"y NLL at all steps: {y_nll_all_steps_list}.\n\n")
+        #logging.info(f"y RMSE at all steps: {y_rmse_all_steps_list}.\n")
+        #logging.info(f"y QICE at all steps: {y_qice_all_steps_list}.\n")
+        #logging.info(f"y PICP at all steps: {y_picp_all_steps_list}.\n\n")
+        #logging.info(f"y NLL at all steps: {y_nll_all_steps_list}.\n\n")
 
         # make plots for true vs. generated distribution comparison
         if config.testing.make_plot:
